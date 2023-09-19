@@ -26,8 +26,8 @@ int main(int argc, char *argv[])
 	while (_getline(&line, &i_line, script) != -1)
 	{
 		void (*callback)(stack_t **, unsigned int) = NULL;
-		char *opcode = strtok(line, " \t\n");
-		char *arg = strtok(NULL, " \t\n");
+		char *opcode = strtok(line, " \r\t\n");
+		char *arg = strtok(NULL, " \r\t\n");
 #ifdef DEBUG	
 	 	printf("[opcode: %s, arg: %s]\n", opcode, arg);
 #endif
