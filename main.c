@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "USAGE: monty file\n"), exit(EXIT_FAILURE);
 	script = fopen(argv[1], "r");
 	if (script == NULL)
-		fprintf(stderr, "Error: Can't open file %s\n", argv[2]), exit(EXIT_FAILURE);
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]), exit(EXIT_FAILURE);
 	
 	while (_getline(&line, &i_line, script) != -1)
 	{
@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 		callback = select_callback(opcode);
 		if (callback == NULL)
 		{
-			fprintf(stderr, "L%d: unknown instruction\n", line_count);
+			fprintf(stderr, "L%d: unknown instruction %s\n", line_count, opcode);
 			free_stack(&stack), fclose(script), exit(EXIT_FAILURE);
 		}
 		command[0] = opcode;
