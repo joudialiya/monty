@@ -6,10 +6,10 @@ stack_t *push(stack_t **head, int n)
 	stack_t * current = NULL;
 
 	if (head == NULL)
-		return (0);
+		return (NULL);
 	node = malloc(sizeof(stack_t));
 	if (node == NULL)
-			return (NULL);
+		return (NULL);
 	node->n = n;
 	node->next = NULL;
 	current = *head;
@@ -55,7 +55,7 @@ int peek(stack_t **head)
 	while (current && current->next)
 		current = current->next;
 	if (current == NULL)
-			return (0);
+		return (0);
 	return (current->n);
 }
 
