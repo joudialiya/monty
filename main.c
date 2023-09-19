@@ -23,13 +23,14 @@ int main(int argc, char *argv[])
 	if (script == NULL)
 		fprintf(stderr, "Error: Can't open file %s\n", argv[2]), exit(EXIT_FAILURE);
 	
-	while (getline(&line, &i_line, script) != -1)
+	while (_getline(&line, &i_line, script) != -1)
 	{
 		void (*callback)(stack_t **, unsigned int) = NULL;
 		char *opcode = strtok(line, " \t\n");
 		char *arg = strtok(NULL, " \t\n");
-	
+#ifdef DEBUG	
 	 	printf("[opcode: %s, arg: %s]\n", opcode, arg);
+#endif
 		line_count += 1;
 		if (opcode[0] == '#')
 			continue;

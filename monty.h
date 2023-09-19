@@ -27,7 +27,7 @@ stack_t *push(stack_t **, int);
 void pop(stack_t **);
 int peek(stack_t **);
 void free_stack(stack_t **);
-
+int _getline(char **lineptr, size_t *n, FILE *file);
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
