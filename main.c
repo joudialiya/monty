@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
 	 	printf("[opcode: %s, arg: %s]\n", opcode, arg);
 #endif
 		line_count += 1;
-		if (opcode[0] == '#')
+		if (opcode == NULL || opcode[0] == '#')
 			continue;
 		callback = select_callback(opcode);
 		if (callback == NULL)
