@@ -26,7 +26,7 @@ void push_callback(stack_t **head, unsigned int line_number)
 	
 	if (push(head, number) == NULL)
 	{
-		fprintf(stderr, "Error: malloc failed\n");
+		fprintf(stderr, "Error: mmalloc failed\n");
 		free_stack(head);
 		exit(EXIT_FAILURE);
 	}
