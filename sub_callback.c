@@ -8,7 +8,7 @@ void sub_callback(stack_t **head, unsigned int line_number)
 	if(*head == NULL || (*head)->next == NULL)
 	{
 		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
-		free_stack(head);
+		free_state(g_state);
 		exit(EXIT_FAILURE);
 	}
 	a = peek(head);
