@@ -10,6 +10,10 @@ void (*select_callback(const char *opcode))(stack_t **, unsigned int)
 		{"swap", swap_callback},
 		{"add", add_callback},
 		{"nop", nop_callback},
+		{"sub", sub_callback},
+		{"div", div_callback},
+		{"mul", mul_callback},
+		{"mod", mod_callback},
 		{NULL, NULL}
 	};
 	int i = 0;
