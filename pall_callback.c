@@ -7,9 +7,13 @@ void pall_callback(stack_t **head, unsigned int line_number)
 
 	(void)line_number;
 	last = *head;
+	while (last && last->next)
+	{
+		last = last->next;
+	}
 	while (last)
 	{
 		printf ("%d\n", last->n);
-		last = last->next;
+		last = last->prev;
 	}
 }
