@@ -3,10 +3,15 @@
 
 void pall_callback(stack_t **head, unsigned int line_number)
 {
-	if (*head)
+	stack_t *last;
+
+	(void)line_number;
+	last = *head;
+	while (last && last->next)
+		last = last->next;
+	while (last)
 	{
-		if ((*head)->next)
-			pall_callback(&((*head)->next), line_number);
-		printf("%d\n", (*head)->n);
+		printf("%d\n", last->n);
+		last = last->prev;
 	}
 }
