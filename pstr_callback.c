@@ -3,10 +3,16 @@
 
 void pstr_callback(stack_t **head, unsigned int line_number)
 {
-	if (*head)
+	stack_t *last = NULL;
+
+	(void)line_number;
+	last = *head;
+	while (last && last->next)
+		last = last->next;
+	while (last && last->n > 0 && last->n < 128)
 	{
-		if ((*head)->next)
-			pstr_callback(&((*head)->next), line_number);
-		printf("%d\n", (*head)->n);
+		printf("%c", last->n);
+		last = last->prev;
 	}
+	printf("\n");
 }
