@@ -19,18 +19,18 @@ void push_callback(stack_t **head, unsigned int line_number)
 {
 	int number = 0;
 
-	if (command[1] == NULL || isnumber(command[1]) == 0)
+	if (g_state->arg == NULL || isnumber(g_state->arg) == 0)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
-		free_stack(head);
+		free_state(g_state);
 		exit(EXIT_FAILURE);
 	}
-	number = atoi(command[1]);
+	number = atoi(g_state->arg);
 	
 	if (push(head, number) == NULL)
 	{
 		fprintf(stderr, "Error: malloc failed\n");
-		free_stack(head);
+		free_state(g_state);
 		exit(EXIT_FAILURE);
 	}
 }

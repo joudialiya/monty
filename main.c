@@ -1,6 +1,6 @@
 #include "monty.h"
 
-char *command[2] = {NULL, NULL};
+state_t *g_state = NULL;
 
 /**
  * main - program entry
@@ -11,42 +11,39 @@ char *command[2] = {NULL, NULL};
  */
 int main(int argc, char *argv[])
 {
-	stack_t *stack = NULL;
-	FILE *script = NULL;
-	char *line = NULL;
-	size_t i_line = 0;
-	int line_count = 0;
-
 	if (argc != 2)
 		fprintf(stderr, "USAGE: monty file\n"), exit(EXIT_FAILURE);
-	script = fopen(argv[1], "r");
-	if (script == NULL)
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]), exit(EXIT_FAILURE);
-	
-	while (_getline(&line, &i_line, script) != -1)
+	g_state = init_state(argv[1]);
+
+	while (_getline(&(g_state->line), &(g_state->i_line), g_state->stream) != -1)
 	{
 		void (*callback)(stack_t **, unsigned int) = NULL;
-		char *opcode = strtok(line, " \r\t\n");
-		char *arg = strtok(NULL, " \r\t\n");
 
+		g_state->opcode = strtok(g_state->line, " \r\t\n");
+		g_state->arg = strtok(NULL, " \r\t\n");
 #ifdef DEBUG
-	 	printf("[opcode: %s, arg: %s]\n", opcode, arg);
+	 	printf("[opcode: %s, arg: %s]\n", g_state->opcode, g_state->arg);
 #endif
 
-		line_count += 1;
-		if (opcode == NULL || opcode[0] == '#')
-			continue;
-		callback = select_callback(opcode);
-		if (callback == NULL)
+		g_state->line_count += 1;
+		if (g_state->opcode && g_state->opcode[0] != '#')
 		{
-			fprintf(stderr, "L%i: unknown instruction %s\n", line_count, opcode);
-			free_stack(&stack), fclose(script), exit(EXIT_FAILURE);
+			callback = select_callback(g_state->opcode);
+			if (callback == NULL)
+			{
+				fprintf(stderr, "L%i: ", g_state->line_count);
+				fprintf(stderr, "unknown instruction %s\n", g_state->opcode);
+				free_state(g_state);
+				exit(EXIT_FAILURE);
+			}
+			callback(&(g_state->stack), g_state->line_count);
 		}
-		command[0] = opcode;
-		command[1] = arg;
-		callback(&stack, line_count);
-		i_line = 0, free(line), line = NULL;
+		g_state->i_line = 0; 
+		free(g_state->line);
+		g_state->line = NULL;
+		g_state->opcode = NULL;
+		g_state->arg = NULL;
 	}
-	free_stack(&stack), fclose(script);
+	free_state(g_state);
 	return (EXIT_SUCCESS);
 }

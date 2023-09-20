@@ -6,7 +6,6 @@
 #include <string.h>
 #include <ctype.h>
 
-extern char *command[2];
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -54,4 +53,26 @@ void nop_callback(stack_t **, unsigned int);
 
 void (*select_callback(const char *))(stack_t **, unsigned int);
 
+#define LIFO 0
+#define FIFO 0
+typedef struct state_s
+{
+	stack_t *stack;
+
+	FILE *stream;
+	int line_count;
+
+	char *line;
+	size_t i_line;
+	
+	char *opcode;
+	char *arg;
+	
+	int mode;
+} state_t;
+
+extern state_t *g_state;
+
+state_t *init_state(const char *);
+void free_state(state_t *);
 #endif

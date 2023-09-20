@@ -4,7 +4,7 @@ void (*select_callback(const char *opcode))(stack_t **, unsigned int)
 {
 	instruction_t list[] = {
 		{"push", push_callback},
-		{"pall", nop_callback},
+		{"pall", pall_callback},
 		{"pint", pint_callback},
 		{"pop", pop_callback},
 		{"swap", swap_callback},
