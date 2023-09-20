@@ -56,6 +56,8 @@ void mul_callback(stack_t **, unsigned int);
 void mod_callback(stack_t **, unsigned int);
 void pchar_callback(stack_t **, unsigned int);
 void pstr_callback(stack_t **, unsigned int);
+void rotl_callback(stack_t **, unsigned int);
+void rotr_callback(stack_t **, unsigned int);
 
 void (*select_callback(const char *))(stack_t **, unsigned int);
 

@@ -16,6 +16,7 @@ void (*select_callback(const char *opcode))(stack_t **, unsigned int)
 		{"mod", mod_callback},
 		{"pchar", pchar_callback},
 		{"pstr", pstr_callback},
+		{"rotl", rotl_callback},
 		{NULL, NULL}
 	};
 	int i = 0;
