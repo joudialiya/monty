@@ -16,5 +16,5 @@ void sub_callback(stack_t **head, unsigned int line_number)
 	b = peek(head);
 	pop(head);
 
-	push(head, a - b);
+	push(head, b - a);
 }
