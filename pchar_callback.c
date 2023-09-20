@@ -9,7 +9,7 @@ void pchar_callback(stack_t **head, unsigned int line_number)
 		free_state(g_state);
 		exit(EXIT_FAILURE);
 	}
-	if ((*head)->n < 0 || (*head)->n > 177)
+	if ((*head)->n < 32 || (*head)->n > 127)
 	{
 		fprintf(stderr, "L%u: can't pchar, value out of range\n", line_number);
 		free_state(g_state);
