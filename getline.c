@@ -2,10 +2,10 @@
 
 int _getline(char **lineptr, size_t *n, FILE *file)
 {
-	int i = 0;
+	size_t i = 0;
 	int c;
 	
-	*n = 4096;
+	*n = 64;
 	*lineptr = malloc(*n);
 	if (*lineptr == NULL)
 	{
@@ -15,6 +15,11 @@ int _getline(char **lineptr, size_t *n, FILE *file)
 	{
 		if (c == '\n')
 			break;
+		if (i + 2 > *n)
+		{
+			*n = 2 * *n;
+			*lineptr = realloc(*lineptr, *n);
+		}
 		(*lineptr)[i] = c;
 		++i;
 	}
