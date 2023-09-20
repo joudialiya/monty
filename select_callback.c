@@ -3,8 +3,8 @@
 void (*select_callback(const char *opcode))(stack_t **, unsigned int)
 {
 	instruction_t list[] = {
-		{"push", nop_callback},
-		{"pall", pall_callback},
+		{"push", push_callback},
+		{"pall", nop_callback},
 		{"pint", pint_callback},
 		{"pop", pop_callback},
 		{"swap", swap_callback},
