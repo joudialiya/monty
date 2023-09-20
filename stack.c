@@ -25,7 +25,26 @@ stack_t *push(stack_t **head, int n)
 	current->next = node;
 	return (node);
 }
+stack_t *enqueue(stack_t **head, int n)
+{
+	stack_t *node = NULL;
 
+	if (head == NULL)
+		return (NULL);
+	node = malloc(sizeof(stack_t));
+	if (node == NULL)
+		return (NULL);
+	node->n = n;
+	node->next = *head;
+	node->prev = NULL;
+	if (*head)
+	{
+		node->prev = (*head)->prev;
+		(*head)->prev = node;
+	}
+	*head = node;
+	return (node);
+}
 void pop(stack_t **head)
 {
 	stack_t *current = NULL;

@@ -27,7 +27,10 @@ stack_t *push(stack_t **, int);
 void pop(stack_t **);
 int peek(stack_t **);
 void free_stack(stack_t **);
+stack_t *enqueue(stack_t **head, int n);
+
 int _getline(char **lineptr, size_t *n, FILE *file);
+
 /**
  * struct instruction_s - opcode and its function
  * @opcode: the opcode
@@ -58,11 +61,13 @@ void pchar_callback(stack_t **, unsigned int);
 void pstr_callback(stack_t **, unsigned int);
 void rotl_callback(stack_t **, unsigned int);
 void rotr_callback(stack_t **, unsigned int);
+void stack_callback(stack_t **, unsigned int);
+void queue_callback(stack_t **, unsigned int);
 
 void (*select_callback(const char *))(stack_t **, unsigned int);
 
-#define LIFO 0
-#define FIFO 0
+#define LIFO 1
+#define FIFO 2
 typedef struct state_s
 {
 	stack_t *stack;
