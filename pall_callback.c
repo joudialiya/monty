@@ -11,7 +11,6 @@ void pall_callback(stack_t **head, unsigned int line_number)
 		last = last->next;
 	while (last)
 	{
-		printf("%d\n", last->n);
 		last = last->prev;
 	}
 }
