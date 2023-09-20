@@ -3,6 +3,9 @@
 
 int isnumber(char *str)
 {
+	if (*str == '-' && strlen(str) > 1)
+		++str;
+
 	while (*str != '\0')
 	{
 		if (isdigit(*str) == 0)
