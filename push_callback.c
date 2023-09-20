@@ -18,7 +18,7 @@ void push_callback(stack_t **head, unsigned int line_number)
 
 	if (command[1] == NULL || isnumber(command[1]) == 0)
 	{
-		fprintf(stderr, "L%d: usage: push integer\n", line_number);
+		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		free_stack(head);
 		exit(EXIT_FAILURE);
 	}
@@ -26,7 +26,7 @@ void push_callback(stack_t **head, unsigned int line_number)
 	
 	if (push(head, number) == NULL)
 	{
-		fprintf(stderr, "Error: mmalloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		free_stack(head);
 		exit(EXIT_FAILURE);
 	}

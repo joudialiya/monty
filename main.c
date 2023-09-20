@@ -37,7 +37,7 @@ int main(int argc, char *argv[])
 		callback = select_callback(opcode);
 		if (callback == NULL)
 		{
-			fprintf(stderr, "L%d: unknown instruction %s\n", line_count, opcode);
+			fprintf(stderr, "L%i: unknown instruction %s\n", line_count, opcode);
 			free_stack(&stack), fclose(script), exit(EXIT_FAILURE);
 		}
 		command[0] = opcode;
