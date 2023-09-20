@@ -28,11 +28,11 @@ int main(int argc, char *argv[])
 		void (*callback)(stack_t **, unsigned int) = NULL;
 		char *opcode = strtok(line, " \r\t\n");
 		char *arg = strtok(NULL, " \r\t\n");
-/*
-#ifdef DEBUG	
+
+#ifdef DEBUG
 	 	printf("[opcode: %s, arg: %s]\n", opcode, arg);
 #endif
-*/
+
 		line_count += 1;
 		if (opcode == NULL || opcode[0] == '#')
 			continue;
