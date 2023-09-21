@@ -1,5 +1,10 @@
 #include "monty.h"
 
+/**
+ * select_callback - select a callback
+ * @opcode: the opcode
+ * Return: callback ptr
+ */
 void (*select_callback(const char *opcode))(stack_t **, unsigned int)
 {
 	instruction_t list[] = {

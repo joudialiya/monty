@@ -1,9 +1,15 @@
 #include "monty.h"
 
+/**
+ * push - push to the stack/tail of the dlinked list
+ * @head: ptr to the list
+ * @n: int
+ * Return: the node or NULL
+ */
 stack_t *push(stack_t **head, int n)
 {
 	stack_t *node = NULL;
-	stack_t * current = NULL;
+	stack_t *current = NULL;
 
 	if (head == NULL)
 		return (NULL);
@@ -25,6 +31,13 @@ stack_t *push(stack_t **head, int n)
 	current->next = node;
 	return (node);
 }
+
+/**
+ * enqueue - add to the head of the dlinked list
+ * @head: ptr to the list
+ * @n: int
+ * Return: the node or NULL
+ */
 stack_t *enqueue(stack_t **head, int n)
 {
 	stack_t *node = NULL;
@@ -45,6 +58,11 @@ stack_t *enqueue(stack_t **head, int n)
 	*head = node;
 	return (node);
 }
+
+/**
+ * pop - pop from stack/tail of the dlinked list
+ * @head: ptr to the head
+ */
 void pop(stack_t **head)
 {
 	stack_t *current = NULL;
@@ -55,15 +73,19 @@ void pop(stack_t **head)
 	while (current && current->next)
 		current = current->next;
 	if (current == NULL)
-			return;
+		return;
 	if (current->prev)
 		current->prev->next = current->next;
 	else
 		*head = NULL;
 	free(current);
-	return;
 }
 
+/**
+ * peek - get the int from the top of the stack/tail of the dlinked list
+ * @head: ptr to the head
+ * Return: the integer
+ */
 int peek(stack_t **head)
 {
 	stack_t *current = NULL;
@@ -78,6 +100,10 @@ int peek(stack_t **head)
 	return (current->n);
 }
 
+/**
+ * free_stack - free double linked list
+ * @head: ptr to the head
+ */
 void free_stack(stack_t **head)
 {
 	stack_t *current = NULL;
@@ -86,7 +112,7 @@ void free_stack(stack_t **head)
 	while (current)
 	{
 		stack_t *next = current->next;
-		
+
 		free(current);
 		current = next;
 	}

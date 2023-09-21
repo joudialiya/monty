@@ -22,9 +22,8 @@ int main(int argc, char *argv[])
 		g_state->opcode = strtok(g_state->line, " \r\t\n");
 		g_state->arg = strtok(NULL, " \r\t\n");
 #ifdef DEBUG
-	 	printf("[opcode: %s, arg: %s]\n", g_state->opcode, g_state->arg);
+		printf("[opcode: %s, arg: %s]\n", g_state->opcode, g_state->arg);
 #endif
-
 		g_state->line_count += 1;
 		if (g_state->opcode && g_state->opcode[0] != '#')
 		{
@@ -38,7 +37,7 @@ int main(int argc, char *argv[])
 			}
 			callback(&(g_state->stack), g_state->line_count);
 		}
-		g_state->i_line = 0; 
+		g_state->i_line = 0;
 		free(g_state->line);
 		g_state->line = NULL;
 		g_state->opcode = NULL;

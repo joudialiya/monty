@@ -1,10 +1,17 @@
 #include "monty.h"
 
+/**
+ * _getline - get a line from a steam [without buffer]
+ * @lineptr: line ptr
+ * @n: ptr to the size of lineptr
+ * @file: stream
+ * Return: number of chars read or -1
+ */
 int _getline(char **lineptr, size_t *n, FILE *file)
 {
 	size_t i = 0;
 	int c;
-	
+
 	*n = 64;
 	*lineptr = malloc(*n);
 	if (*lineptr == NULL)

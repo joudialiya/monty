@@ -1,6 +1,11 @@
 #include "monty.h"
 
 
+/**
+ * isnumber - is the str is a integer
+ * @str: string
+ * Return: i or 0
+ */
 int isnumber(char *str)
 {
 	if (*str == '-' && strlen(str) > 1)
@@ -15,6 +20,11 @@ int isnumber(char *str)
 	return (1);
 }
 
+/**
+ * push_callback - callback
+ * @head: ptr to the head of the list
+ * @line_number: line_number
+ */
 void push_callback(stack_t **head, unsigned int line_number)
 {
 	int number = 0;
@@ -27,7 +37,7 @@ void push_callback(stack_t **head, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 	number = atoi(g_state->arg);
-	
+
 	if (g_state->mode == LIFO)
 		node = push(head, number);
 	else
